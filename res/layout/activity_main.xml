@@ -1,0 +1,66 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity" >
+	
+    <ImageView 
+        android:id="@+id/ImgLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo"
+        />
+    
+    <TextView
+        android:id="@+id/LblBienvenido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ImgLogo"
+        android:layout_marginTop="5dip"
+        android:text="Bienvenidos a la aplicacion de registro de asistencia de Eventos FIA!" />
+    
+    <TextView
+        android:id="@+id/LblUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dip"
+        android:layout_below="@id/LblBienvenido"
+        android:text="Ingresa tu usuario:" />
+ 
+    <EditText
+        android:id="@+id/TxtUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/LblUsuario"
+        android:inputType="text">
+    </EditText>
+    
+     <TextView
+        android:id="@+id/LblPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/TxtUsuario"
+        android:text="Ingresa tu contraseña:" />
+ 
+     <EditText
+        android:id="@+id/TxtPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/LblPassword"
+        android:inputType="textPassword">
+    </EditText>
+     
+    <Button
+        android:id="@+id/BtnIngresar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/TxtPassword"
+        android:layout_marginTop="20dip"
+        android:drawableLeft="@drawable/key"
+        android:text=" Ingresar" />
+
+</RelativeLayout>
