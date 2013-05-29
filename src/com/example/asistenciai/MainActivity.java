@@ -21,7 +21,7 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(MainActivity.this, FrmMenu.class);
+				Intent intent = new Intent(MainActivity.this, MenuActivity.class);
 				startActivity(intent);
 			}
 		});

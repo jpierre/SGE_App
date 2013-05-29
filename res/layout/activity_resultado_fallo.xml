@@ -1,9 +1,9 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity" >
-
+    android:orientation="vertical" >
+    
     <ImageView 
         android:id="@+id/ImgLogo"
         android:layout_width="wrap_content"
@@ -11,23 +11,23 @@
         android:src="@drawable/logo_usmp"
     />
     
-    <TextView
-        android:id="@+id/LblSeleccion"
+    <ImageView 
+        android:id="@+id/ImgLogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/ImgLogo"
         android:layout_marginTop="5dip"
         android:layout_marginLeft="5dip"
-        android:text="Seleccione:" />
+        android:src="@drawable/wrong_code"
+    />
     
-    <Button
-        android:id="@+id/BtnRegistrar"
+    <TextView
+        android:id="@+id/LblResultado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/LblSeleccion"
-        android:layout_marginTop="20dip"
+        android:layout_marginTop="5dip"
         android:layout_marginLeft="5dip"
-        android:drawableLeft="@drawable/qr"
-        android:text=" Registrar Asistencia" />
+        android:textColor="#F60018"
+        android:text="El codigo ingresado no contiene informacion para la asistencia de un alumno!" />
+    
 
-</RelativeLayout>
+</LinearLayout>

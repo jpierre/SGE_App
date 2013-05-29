@@ -8,7 +8,7 @@ import android.widget.TextView;
 import android.view.View;
 import android.view.View.OnClickListener;
 
-public class FrmMenu extends Activity {
+public class MenuActivity extends Activity {
 
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +36,11 @@ public class FrmMenu extends Activity {
 	 	      if (resultCode == RESULT_OK) {
 	 	         String contents = intent.getStringExtra("SCAN_RESULT");
 	 	        if(contents.equals("prueba")){
-	 	        	Intent i = new Intent(FrmMenu.this, FrmResultado.class);
+	 	        	Intent i = new Intent(MenuActivity.this, ResultadoOkActivity.class);
 	 	        	startActivity(i);  
 	 	         }else{ 
-	 	        	 //En caso de que sea otro link...
+	 	        	Intent i = new Intent(MenuActivity.this, ResultadoFalloActivity.class);
+	 	        	startActivity(i);
 	 	         }
 	 	      } else if (resultCode == RESULT_CANCELED) {
 	 	         // Handle cancel
