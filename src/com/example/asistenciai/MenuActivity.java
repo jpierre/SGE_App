@@ -14,20 +14,28 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.TextView;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 
 
 
+
 public class MenuActivity extends Activity {
 	
-	JSONParser jsonParser = new JSONParser();
-	// url to update product
-	private static final String url_update_registro = "http://10.0.2.2/android_connect/registrar_asistencia.php";
+	// Progress Dialog
+    private ProgressDialog pDialog;
+ 
+    // JSON parser class
+    JSONParser jsonParser = new JSONParser();
+ 
+    // single product url
+	private static final String url_registrar_asistencia = "http://10.0.2.2/android_connect/registrar_asistencia.php";
+ 
+    // JSON Node names
+    private static final String TAG_SUCCESS = "success";
+    
 	
-	private static final String TAG_SUCCESS = "success";
-
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,14 +57,15 @@ public class MenuActivity extends Activity {
        
        }
 	
-		public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
 	 	   if (requestCode == 0) {
 	 	      if (resultCode == RESULT_OK) {
 	 	         String contents = intent.getStringExtra("SCAN_RESULT");
-	 	        if(contents.equals("30")){
-	 	        	new SaveProductDetails().execute();
-	 	        	/*Intent i = new Intent(MenuActivity.this, ResultadoOkActivity.class);
-	 	        	startActivity(i);*/  
+	 	        if(contents.equals("64572215")){
+	 	        	
+	 	        	new ActualizarAsistencia().execute();
+	 	        	
+	 	        	
 	 	         }else{ 
 	 	        	Intent i = new Intent(MenuActivity.this, ResultadoFalloActivity.class);
 	 	        	startActivity(i);
@@ -67,38 +76,53 @@ public class MenuActivity extends Activity {
 	 	   }
 	 	}
 		
-		class SaveProductDetails extends AsyncTask<String, String, String> {
-
+		class ActualizarAsistencia extends AsyncTask<String, String, String> {
+		
 			/**
-			 * Saving product
+			 * Before starting background thread Show Progress Dialog
+			 * */
+			@Override
+			protected void onPreExecute() {
+				super.onPreExecute();
+				pDialog = new ProgressDialog(MenuActivity.this);
+				pDialog.setMessage("Registrando asistencia..");
+				pDialog.setIndeterminate(false);
+				pDialog.setCancelable(true);
+				pDialog.show();
+			}
+	        
+			/**
+			 * Creating product
 			 * */
 			protected String doInBackground(String... args) {
-
-				/*// getting updated data from EditTexts
-				String name = txtName.getText().toString();
-				String price = txtPrice.getText().toString();
-				String description = txtDesc.getText().toString();*/
-				String num_doc_user = "30";
+				String cod = "645722150";
+				String asistio ="1";
+				
 				// Building Parameters
 				List<NameValuePair> params = new ArrayList<NameValuePair>();
-				params.add(new BasicNameValuePair("num_doc_user", num_doc_user));
+				params.add(new BasicNameValuePair("cod", cod));
+				params.add(new BasicNameValuePair("asistio", asistio));
+							
 				
-				// sending modified data through http request
-				// Notice that update product url accepts POST method
-				JSONObject json = jsonParser.makeHttpRequest(url_update_registro,
+				// getting JSON Object
+				// Note that create product url accepts POST method
+				JSONObject json = jsonParser.makeHttpRequest(url_registrar_asistencia,
 						"POST", params);
+				
+				
+				
+				// check log cat for response
+				Log.d("Create Response", json.toString());
 
-				// check json success tag
-				try {
+				// check for success tag
+				/*try {
 					int success = json.getInt(TAG_SUCCESS);
-					
+
 					if (success == 1) {
+						// successfully created product
 						Intent i = new Intent(MenuActivity.this, ResultadoOkActivity.class);
 		 	        	startActivity(i);
-						/*// successfully updated
-						Intent i = getIntent();
-						// send result code 100 to notify about product update*/
-						setResult(100, i);
+						// closing this screen
 						finish();
 					} else {
 						Intent i = new Intent(MenuActivity.this, ResultadoFalloActivity.class);
@@ -106,9 +130,21 @@ public class MenuActivity extends Activity {
 					}
 				} catch (JSONException e) {
 					e.printStackTrace();
-				}
+				}*/
 
 				return null;
 			}
+			
+			/**
+	         * After completing background task Dismiss the progress dialog
+	         * **/
+	        protected void onPostExecute(String file_url) {
+	            // dismiss the dialog once product uupdated
+	            pDialog.dismiss();
+	        }
+			
+			
 		}
+		
+		
 }

@@ -26,15 +26,18 @@
 		      <category android:name="android.intent.category.DEFAULT"/>
     		</intent-filter>
         </activity>
-        <activity android:name=".MenuActivity"
-                  android:label="Menu - Eventos FIA" >
+        <activity 
+            android:name=".MenuActivity"
+            android:label="Menu - Eventos FIA" >
          </activity>
-         <activity android:name=".ResultadoOkActivity"
-                  android:label="Asistencia - Eventos FIA" >
+         <activity 
+            android:name=".ResultadoOkActivity"
+            android:label="Asistencia - Eventos FIA" >
          </activity>
          <activity android:name=".ResultadoFalloActivity"
                   android:label="Asistencia - Eventos FIA" >
          </activity>
     </application>
 		<uses-permission android:name="android.permission.CAMERA"/>
+		<uses-permission android:name="android.permission.INTERNET"/>
 </manifest>
