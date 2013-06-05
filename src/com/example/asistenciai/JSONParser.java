@@ -86,7 +86,7 @@ public class JSONParser {
 		} catch (Exception e) {
 			Log.e("Buffer Error", "Errore converting result " + e.toString());
 		}
-
+		Log.d("JSON",json.toString());
 		// try parse the string to a JSON object
 		try {
 			jObj = new JSONObject(json);
